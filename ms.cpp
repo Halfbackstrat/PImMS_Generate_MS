@@ -18,9 +18,10 @@ int main(int argc, char *argv[])
 
 	myfile.open(argv[1]);
 	if(myfile.is_open())
-	while (myfile >> x >> y >> t >> shot >> bin)
+	while (myfile >> x >> y >> t >> shot)
 	{
-		++ms[t-1];
+		if (t <= 4096)
+		{++ms[t-1];}
 	}
 
 	myfile.close();
@@ -29,7 +30,7 @@ int main(int argc, char *argv[])
 	
 	for (int i = 0; i < ms.size(); ++i)
 	{
-	outputfile << i << "\t" << ms[i] << endl;
+	outputfile << i+1 << "\t" << ms[i] << endl;
 	}
 	outputfile.close();
 
